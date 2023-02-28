@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, SafeAreaView, View, Modal } from 'react-native';
+import { ActivityIndicator, SafeAreaView, View, Modal, StyleSheet } from 'react-native';
 import { Camera, PhotoFile } from 'react-native-vision-camera';
 
 import { useTakeFoto } from './useTakePhoto';
@@ -21,9 +21,11 @@ export function TakePhoto({ onClose }: ITakeFotoProps) {
 
 					{!!device && !photo && (
 						<>
-							<Camera ref={camera} device={device} isActive style={{ flex: 1 }} photo />
+							<Camera ref={camera} device={device} isActive style={StyleSheet.absoluteFill} photo />
 
-							<BackButton name="arrow-back" onPress={() => onClose(null)} loading={loading} />
+							<BackButton name="arrow-back" onPress={() => onClose(null)} loading={loading}>
+								<Text>{' < '}</Text>
+							</BackButton>
 
 							<CaptureButton name="circle" onPress={handleTakePhoto} loading={loading} />
 						</>
